@@ -8,11 +8,12 @@ using System.Threading.Tasks;
 
 namespace ServerExplorer.UI.ViewModels
 {
-    class BaseViewModel : INotifyPropertyChanged
+    public class BaseViewModel : INotifyPropertyChanged
     {
         protected void RaisePropertyChanged<T>(Expression<Func<T>> action)
         {
             var propertyName = GetPropertyName(action);
+            Console.WriteLine(propertyName);
             RaisePropertyChanged(propertyName);
         }
 
@@ -26,7 +27,7 @@ namespace ServerExplorer.UI.ViewModels
         private void RaisePropertyChanged(string propertyName)
         {
             if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+                PropertyChanged.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
