@@ -9,6 +9,7 @@ using System.Windows.Controls;
 using System.Collections.ObjectModel;
 using ServerExplorer.UI.Models;
 using System.Security;
+using ServerExplorer.Services.Interfaces;
 
 namespace ServerExplorer.UI.ViewModels
 {
@@ -39,18 +40,21 @@ namespace ServerExplorer.UI.ViewModels
 
         public ObservableCollection<Server> ServerList { get; set; }
 
-        public MainWindowViewModel()
+        private IServerService _serverService;
+
+        public MainWindowViewModel(IServerService serverService)
         {
             DownloadCommand = new DelegateCommand(DonwloadData);
 
-            ServerList = new ObservableCollection<Server>();/*
-            ServerList.Add(new Server() { Name = "First", Distance = 123 });
-            ServerList.Add(new Server() { Name = "Second", Distance = 456 });
-            ServerList.Add(new Server() { Name = "Third", Distance = 2651462 });*/
+            ServerList = new ObservableCollection<Server>();
+
+            _serverService = serverService;
         }
 
         private void DonwloadData()
         {
+            _serverService.GetServerList();
+
             ServerList.Add(new Server() { Name = Username, Distance = Password});
         }
     }

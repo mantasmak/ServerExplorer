@@ -1,4 +1,5 @@
-﻿using ServerExplorer.UI.ViewModels;
+﻿using ServerExplorer.Services.Interfaces;
+using ServerExplorer.UI.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,8 +22,6 @@ namespace ServerExplorer.UI
         public MainWindow()
         {
             InitializeComponent();
-
-            this.DataContext = new MainWindowViewModel();
         }
 
         private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ServerExplorer.Infrastructure.ExternalAPIs
 {
-    class ServerAPI : IServerAPI
+    public class ServerAPI : IServerAPI
     {
         private static readonly HttpClient client = new HttpClient();
 

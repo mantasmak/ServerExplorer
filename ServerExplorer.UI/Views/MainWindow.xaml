@@ -5,11 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ServerExplorer.UI"
         mc:Ignorable="d"
+        DataContext="{Binding Path=MainWindowViewModel, Source={StaticResource ServiceLocator}}"
         Title="MainWindow" Height="355" Width="535">
     <StackPanel Orientation="Horizontal">
-        <!-- <TextBlock Text="{Binding Message, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" HorizontalAlignment="Center"/>
-        <Button Command="{Binding ClickCommand}" Content="Click!" Margin="100"/>
--->
         <StackPanel VerticalAlignment="Center">
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="Username" Margin="20, 10, 10, 10"/>

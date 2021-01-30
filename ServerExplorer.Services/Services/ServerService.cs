@@ -9,7 +9,7 @@ using ServerExplorer.Infrastructure.Interfaces;
 
 namespace ServerExplorer.Services.Services
 {
-    class ServerService : IServerService
+    public class ServerService : IServerService
     {
         IServerAPI _serverAPI;
 
@@ -20,7 +20,7 @@ namespace ServerExplorer.Services.Services
 
         public IEnumerable<Server> GetServerList()
         {
-
+            _serverAPI.GetServers("", "");
 
             return null;
         }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ServerExplorer.Services.Interfaces
 {
-    interface IServerService
+    public interface IServerService
     {
         IEnumerable<Server> GetServerList();
     }
