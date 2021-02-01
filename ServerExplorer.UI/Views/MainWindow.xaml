@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:ServerExplorer.UI"
         mc:Ignorable="d"
         DataContext="{Binding Path=MainWindowViewModel, Source={StaticResource ServiceLocator}}"
-        Title="MainWindow" Height="355" Width="535">
+        Title="MainWindow" Height="355" Width="555">
     <StackPanel Orientation="Horizontal">
         <StackPanel VerticalAlignment="Center">
             <StackPanel Orientation="Horizontal">
@@ -18,9 +18,10 @@
                 <PasswordBox PasswordChanged="PasswordBox_PasswordChanged" Width="120" Margin="3, 10, 10, 10"/>
             </StackPanel>
             <Button Command="{Binding DownloadCommand}" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Download data" Margin="0, 10, 0, 0" Width="100"/>
+            <TextBlock Text="{Binding ErrorMessage}" HorizontalAlignment="Center" Margin="10" Foreground="Red"/>
         </StackPanel>
         <ListView HorizontalAlignment = "Center" Height = "300" Margin = "0,10,0,0" 
-                  VerticalAlignment = "Top" Width = "300" ItemsSource="{Binding ServerList}">
+                  VerticalAlignment = "Top" Width = "auto" ItemsSource="{Binding ServerList}">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header = "Name" DisplayMemberBinding = "{Binding Name}" 

@@ -19,43 +19,69 @@ namespace ServerExplorer.UI.ViewModels
 
         public string Password { private get; set; }
 
-        private string _message;
-        public string Message
+        private string _errorMessage;
+        public string ErrorMessage
         {
             get
             {
-                return _message;
+                return _errorMessage;
             }
             set
             {
-                if (_message != value)
+                if (_errorMessage != value)
                 {
-                    _message = value;
-                    RaisePropertyChanged(() => Message);
+                    _errorMessage = value;
+                    RaisePropertyChanged(() => ErrorMessage);
                 }
             }
         }
 
         public ICommand DownloadCommand{ get; private set;}
 
-        public ObservableCollection<Server> ServerList { get; set; }
-
         private IServerService _serverService;
+
+        public ObservableCollection<Server> ServerList { get; set; }
 
         public MainWindowViewModel(IServerService serverService)
         {
-            DownloadCommand = new DelegateCommand(DonwloadData);
+            DownloadCommand = new DelegateCommand(DonwloadData, CanDonwloadData);
 
             ServerList = new ObservableCollection<Server>();
 
             _serverService = serverService;
         }
 
-        private void DonwloadData()
+        private bool CanDonwloadData()
         {
-            _serverService.GetServerList();
+            return !(String.IsNullOrEmpty(Username) || String.IsNullOrEmpty(Password));
+        }
 
-            ServerList.Add(new Server() { Name = Username, Distance = Password});
+        private async void DonwloadData()
+        {
+            ErrorMessage = "";
+
+            if(!InternetConnection.CheckForInternetConnection())
+            {
+                ErrorMessage = "Check your internet connection";
+                return;
+            }
+
+            if (!await _serverService.UpdateDatabase(Username, Password))
+            {
+                ErrorMessage = "Wrong Username or Password";
+                return;
+            }
+
+            var servers = _serverService.GetServers();
+            if(servers == null || !servers.Any())
+            {
+                ErrorMessage = "Database is empty";
+            }
+
+            ServerList.Clear();
+
+            foreach(var server in servers)
+                ServerList.Add(new Server() { Name = server.Name, Distance = server.Distance });
         }
     }
 }

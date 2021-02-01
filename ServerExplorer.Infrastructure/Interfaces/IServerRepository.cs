@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace ServerExplorer.Infrastructure.Interfaces
 {
-    public interface IServerAPI
+    public interface IServerRepository : IRepository<Server>
     {
-        Task<IEnumerable<Server>> GetServersAsync(string username, string password);
+        IEnumerable<Server> GetAllOrderedByDescendingDistance();
     }
 }

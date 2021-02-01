@@ -10,6 +10,6 @@ namespace ServerExplorer.UI.Models
     public class Server
     {
         public string Name { get; set; }
-        public string Distance { get; set; }
+        public int Distance { get; set; }
     }
 }

@@ -9,6 +9,7 @@ namespace ServerExplorer.Services.Interfaces
 {
     public interface IServerService
     {
-        IEnumerable<Server> GetServerList();
+        Task<bool> UpdateDatabase(string username, string password);
+        IEnumerable<Server> GetServers();
     }
 }
