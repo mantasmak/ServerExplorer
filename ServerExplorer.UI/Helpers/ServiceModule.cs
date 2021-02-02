@@ -1,5 +1,6 @@
 ﻿using Ninject.Modules;
-using ServerExplorer.Infrastructure.ExternalAPIs;
+using Serilog;
+using ServerExplorer.Infrastructure.WebServices;
 using ServerExplorer.Infrastructure.Interfaces;
 using ServerExplorer.Infrastructure.Persistence;
 using ServerExplorer.Infrastructure.Persistence.Repositories;
@@ -14,11 +15,16 @@ namespace ServerExplorer.UI.Helpers
         public override void Load()
         {
             Bind<IServerService>().To<ServerService>();
-            Bind<IServerAPI>().To<ServerAPI>();
+            Bind<IServerWebService>().To<ServerWebService>();
             Bind<HttpClient>().ToSelf().InSingletonScope();
             Bind<IServerRepository>().To<ServerRepository>();
             Bind<ServerExplorerContext>().ToSelf().InTransientScope();
-            Bind(typeof(IRepository<>)).To(typeof(Repository<>)); 
+            Bind(typeof(IRepository<>)).To(typeof(Repository<>));
+
+            Log.Logger = new LoggerConfiguration()
+                .WriteTo.Console()
+                .WriteTo.File("log.txt")
+                .CreateLogger();
         }
     }
 }

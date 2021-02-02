@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServerExplorer.Infrastructu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServerExplorer.Domain", "ServerExplorer.Domain\ServerExplorer.Domain.csproj", "{F00F86E9-94C7-4FBF-BE5B-AE2166A5316D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServerExplorer.Services.Tests", "ServerExplorer.Services.Tests\ServerExplorer.Services.Tests.csproj", "{DD6A212B-88F2-48A0-860B-ECBF481794E5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{F00F86E9-94C7-4FBF-BE5B-AE2166A5316D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F00F86E9-94C7-4FBF-BE5B-AE2166A5316D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F00F86E9-94C7-4FBF-BE5B-AE2166A5316D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD6A212B-88F2-48A0-860B-ECBF481794E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD6A212B-88F2-48A0-860B-ECBF481794E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD6A212B-88F2-48A0-860B-ECBF481794E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD6A212B-88F2-48A0-860B-ECBF481794E5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -9,7 +9,7 @@ namespace ServerExplorer.Services.Interfaces
 {
     public interface IServerService
     {
-        Task<bool> UpdateDatabase(string username, string password);
+        Task<bool> UpdateDatabaseAsync(string username, string password);
         IEnumerable<Server> GetServers();
     }
 }

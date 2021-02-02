@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using Ninject.Extensions.Logging;
+using System.Net;
 
 namespace ServerExplorer.UI.Helpers
 {
@@ -14,6 +15,7 @@ namespace ServerExplorer.UI.Helpers
             }
             catch
             {
+
                 return false;
             }
         }

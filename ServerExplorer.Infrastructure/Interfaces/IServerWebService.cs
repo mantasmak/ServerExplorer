@@ -1,13 +1,10 @@
 ﻿using ServerExplorer.Domain.Entities;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace ServerExplorer.Infrastructure.Interfaces
 {
-    public interface IServerAPI
+    public interface IServerWebService
     {
         Task<IEnumerable<Server>> GetServersAsync(string username, string password);
     }

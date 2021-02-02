@@ -1,15 +1,11 @@
 ﻿using ServerExplorer.UI.Helpers;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
-using System.Windows.Controls;
 using System.Collections.ObjectModel;
 using ServerExplorer.UI.Models;
-using System.Security;
 using ServerExplorer.Services.Interfaces;
+using Ninject.Extensions.Logging;
 
 namespace ServerExplorer.UI.ViewModels
 {
@@ -38,17 +34,21 @@ namespace ServerExplorer.UI.ViewModels
 
         public ICommand DownloadCommand{ get; private set;}
 
-        private IServerService _serverService;
+        private readonly IServerService _serverService;
+
+        private readonly ILogger _logger;
 
         public ObservableCollection<Server> ServerList { get; set; }
 
-        public MainWindowViewModel(IServerService serverService)
+        public MainWindowViewModel(IServerService serverService, ILogger logger)
         {
             DownloadCommand = new DelegateCommand(DonwloadData, CanDonwloadData);
 
             ServerList = new ObservableCollection<Server>();
 
             _serverService = serverService;
+
+            _logger = logger;
         }
 
         private bool CanDonwloadData()
@@ -59,14 +59,15 @@ namespace ServerExplorer.UI.ViewModels
         private async void DonwloadData()
         {
             ErrorMessage = "";
-
+            
             if(!InternetConnection.CheckForInternetConnection())
             {
+                _logger.Warn("There is no internet connection");
                 ErrorMessage = "Check your internet connection";
                 return;
             }
 
-            if (!await _serverService.UpdateDatabase(Username, Password))
+            if (!await _serverService.UpdateDatabaseAsync(Username, Password))
             {
                 ErrorMessage = "Wrong Username or Password";
                 return;
@@ -76,6 +77,7 @@ namespace ServerExplorer.UI.ViewModels
             if(servers == null || !servers.Any())
             {
                 ErrorMessage = "Database is empty";
+                return;
             }
 
             ServerList.Clear();

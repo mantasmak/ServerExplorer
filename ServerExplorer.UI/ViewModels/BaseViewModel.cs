@@ -13,7 +13,6 @@ namespace ServerExplorer.UI.ViewModels
         protected void RaisePropertyChanged<T>(Expression<Func<T>> action)
         {
             var propertyName = GetPropertyName(action);
-            Console.WriteLine(propertyName);
             RaisePropertyChanged(propertyName);
         }
 
